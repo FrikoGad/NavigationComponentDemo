@@ -13,14 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
-        android:text="Green box" />
+        android:text="@string/green_box" />
 
     <Button
         android:id="@+id/btn_open_yellow_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/yellow"
-        android:text="Yellow box"
+        android:text="@string/yellow_box"
         android:textColor="@color/black" />
 
 </LinearLayout>

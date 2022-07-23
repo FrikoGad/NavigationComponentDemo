@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">NavigationComponentDemo</string>
+    <string name="generated_number">Generated number:</string>
+    <string name="yellow">Yellow</string>
+    <string name="green">Green</string>
+    <string name="this_is_a_box">This is a Box!</string>
+    <string name="go_back">Go back</string>
+    <string name="open_secret">Open secret</string>
+    <string name="generate_number">Generate number</string>
+    <string name="green_box">Green box</string>
+    <string name="yellow_box">Yellow box</string>
+    <string name="this_is_secret_place">This is secret Place</string>
+    <string name="close_secret">Close secret</string>
+    <string name="close_the_whole_box">Close the whole box</string>
+    <string name="root">Root</string>
+    <string name="box_tittle">{colorName}Box</string>
+    <string name="secret">Close the whole box</string>
 </resources>

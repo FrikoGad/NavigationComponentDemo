@@ -15,24 +15,24 @@
         android:fontFamily="casual"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="This is a Box!"/>
+        android:text="@string/this_is_a_box"/>
 
     <Button
         android:id="@+id/btn_go_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go back"/>
+        android:text="@string/go_back"/>
 
     <Button
         android:id="@+id/btn_open_secret"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open secret"/>
+        android:text="@string/open_secret"/>
 
     <Button
         android:id="@+id/btn_generate_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate number"/>
+        android:text="@string/generate_number"/>
 
 </LinearLayout>
