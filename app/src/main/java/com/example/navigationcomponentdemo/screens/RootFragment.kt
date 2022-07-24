@@ -4,12 +4,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.navigationcomponentdemo.R
 import com.example.navigationcomponentdemo.databinding.FragmentRootBinding
+import com.example.navigationcomponentdemo.listenResult
 
 class RootFragment : Fragment(R.layout.fragment_root) {
 
@@ -19,22 +19,27 @@ class RootFragment : Fragment(R.layout.fragment_root) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRootBinding.bind(view)
         binding.btnOpenYellowBox.setOnClickListener {
-            openBox(Color.rgb(251,219,28), getString(R.string.yellow))
+            openBox(Color.rgb(251, 219, 28), getString(R.string.yellow))
         }
         binding.btnOpenGreenBox.setOnClickListener {
-            openBox(Color.rgb(45,154,13), getString(R.string.green))
+            openBox(Color.rgb(45, 154, 13), getString(R.string.green))
         }
 
-        parentFragmentManager.setFragmentResultListener(BoxFragment.REQUEST_CODE, viewLifecycleOwner) { _, data ->
-            val number = data.getInt(BoxFragment.EXTRA_RANDOM_NUMBER)
-            Toast.makeText(requireContext(), "${R.string.generated_number} $number", Toast.LENGTH_SHORT).show()
+        listenResult<Int>(BoxFragment.EXTRA_RANDOM_NUMBER) { randomNumber ->
+            Toast.makeText(
+                requireContext(),
+                "${getString(R.string.generated_number)} $randomNumber",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun openBox(color: Int, colorName: String) {
+
+        val direction = RootFragmentDirections.actionRootFragmentToBoxFragment(color, colorName)
+
         findNavController().navigate(
-            R.id.action_rootFragment_to_boxFragment,
-            bundleOf(BoxFragment.ARG_COLOR to color, BoxFragment.ARG_COLOR_NAME to colorName),
+            direction,
             navOptions {
                 anim {
                     enter = R.anim.enter

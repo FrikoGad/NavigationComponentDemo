@@ -2,9 +2,9 @@ package com.example.navigationcomponentdemo.screens
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.navigationcomponentdemo.R
 import com.example.navigationcomponentdemo.databinding.FragmentBoxBinding
@@ -14,11 +14,13 @@ class BoxFragment :Fragment(R.layout.fragment_box) {
 
     private lateinit var binding: FragmentBoxBinding
 
+    private val args: BoxFragmentArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBoxBinding.bind(view)
 
-        val color = requireArguments().getInt(ARG_COLOR)
+        val color = args.color
         binding.root.setBackgroundColor(color)
 
         binding.btnGoBack.setOnClickListener {
@@ -26,8 +28,7 @@ class BoxFragment :Fragment(R.layout.fragment_box) {
         }
         binding.btnOpenSecret.setOnClickListener {
             findNavController().navigate(
-                R.id.action_boxFragment_to_secretFragment,
-                bundleOf(),
+                BoxFragmentDirections.actionBoxFragmentToSecretFragment(),
                 navOptions {
                     anim {
                         enter = R.anim.second_enter
@@ -38,16 +39,12 @@ class BoxFragment :Fragment(R.layout.fragment_box) {
         }
         binding.btnGenerateNumber.setOnClickListener {
             val number = Random.nextInt(100)
-            parentFragmentManager.setFragmentResult(REQUEST_CODE, bundleOf(EXTRA_RANDOM_NUMBER to number))
+            findNavController().previousBackStackEntry?.savedStateHandle?.set(EXTRA_RANDOM_NUMBER, number)
             findNavController().popBackStack()
         }
     }
 
     companion object {
-        const val ARG_COLOR = "color"
-        const val ARG_COLOR_NAME = "colorName"
-
-        const val REQUEST_CODE = "RANDOM_NUMBER_REQUEST_CODE"
         const val EXTRA_RANDOM_NUMBER = "EXTRA_RANDOM_NUMBER"
     }
 }
