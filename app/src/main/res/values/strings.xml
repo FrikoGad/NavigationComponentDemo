@@ -14,5 +14,5 @@
     <string name="close_the_whole_box">Close the whole box</string>
     <string name="root">Root</string>
     <string name="box_tittle">{colorName}Box</string>
-    <string name="secret">Close the whole box</string>
+    <string name="secret">Secret</string>
 </resources>
